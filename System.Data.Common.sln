@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E059CBEA-70F9-4DFE-9187-686AEF169A60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k10", "k10", "{92D92C23-08E5-48CE-9DC6-144F6FFB76F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net45", "net45", "{A0DCB366-1404-41B5-96C5-BA8604B4BA54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Data.Common.k10", "src\System.Data.Common\System.Data.Common.k10.csproj", "{83592759-C957-4E07-8926-7A4426D39E3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Data.Common.net45", "src\System.Data.Common\System.Data.Common.net45.csproj", "{5EF04D39-E204-474F-9112-70984F71DEDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83592759-C957-4E07-8926-7A4426D39E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83592759-C957-4E07-8926-7A4426D39E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83592759-C957-4E07-8926-7A4426D39E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83592759-C957-4E07-8926-7A4426D39E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EF04D39-E204-474F-9112-70984F71DEDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EF04D39-E204-474F-9112-70984F71DEDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EF04D39-E204-474F-9112-70984F71DEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EF04D39-E204-474F-9112-70984F71DEDA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{92D92C23-08E5-48CE-9DC6-144F6FFB76F0} = {E059CBEA-70F9-4DFE-9187-686AEF169A60}
+		{A0DCB366-1404-41B5-96C5-BA8604B4BA54} = {E059CBEA-70F9-4DFE-9187-686AEF169A60}
+		{83592759-C957-4E07-8926-7A4426D39E3A} = {92D92C23-08E5-48CE-9DC6-144F6FFB76F0}
+		{5EF04D39-E204-474F-9112-70984F71DEDA} = {A0DCB366-1404-41B5-96C5-BA8604B4BA54}
+	EndGlobalSection
+EndGlobal

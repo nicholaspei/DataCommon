@@ -1,0 +1,13 @@
+{
+    "version": "0.1-alpha-*",
+    "dependencies": {
+    },
+    "configurations": {
+        "net45": {
+            "dependencies": {
+                "System.Data": ""
+            }
+        },
+        "k10": {}
+    }
+}
