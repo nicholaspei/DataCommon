@@ -18,6 +18,8 @@ namespace System.Data.Common
             Dispose(false);
         }
 
+        public virtual event StateChangeEventHandler StateChange;
+
         public abstract string ConnectionString { get; set; }
         public abstract string DataSource { get; }
         public abstract string Database { get; }
@@ -55,6 +57,10 @@ namespace System.Data.Common
 
         protected void OnStateChange(StateChangeEventArgs stateChange)
         {
+            if (StateChange != null)
+            {
+                StateChange(this, stateChange);
+            }
         }
 
         protected abstract DbTransaction BeginDbTransaction(IsolationLevel isolationLevel);
