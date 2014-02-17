@@ -11,8 +11,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Data
 {
+    /// <summary>
+    /// Specifies how a command string is interpreted.
+    /// </summary>
     public enum CommandType
     {
+        /// <summary>
+        /// An SQL text command. (Default.)
+        /// </summary>
         Text = 1
     }
 }

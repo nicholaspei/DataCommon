@@ -11,6 +11,10 @@ using System.Runtime.CompilerServices;
 
 namespace System.Data.Common
 {
+    /// <summary>
+    /// Represents a parameter to a <see cref="DbCommand" /> and optionally, its mapping to a <see cref="DataSet" />
+    /// column. For more information on parameters, see Configuring Parameters and Parameter Data Types (ADO.NET).
+    /// </summary>
     public abstract class DbParameter
     {
     }

@@ -11,6 +11,9 @@ using System.Runtime.CompilerServices;
 
 namespace System.Data
 {
+    /// <summary>
+    /// Specifies how query command results are applied to the row being updated.
+    /// </summary>
     public enum UpdateRowSource
     {
     }

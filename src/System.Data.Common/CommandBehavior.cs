@@ -11,6 +11,9 @@ using System.Runtime.CompilerServices;
 
 namespace System.Data
 {
+    /// <summary>
+    /// Provides a description of the results of the query and its effect on the database.
+    /// </summary>
     public enum CommandBehavior
     {
     }

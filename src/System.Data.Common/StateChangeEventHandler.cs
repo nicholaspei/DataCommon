@@ -9,8 +9,15 @@ using System.Runtime.CompilerServices;
 
 #else
 
+using System.Data.Common;
+
 namespace System.Data
 {
+    /// <summary>
+    /// Represents the method that will handle the <see cref="DbConnection.StateChange" /> event.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="StateChangeEventArgs" /> that contains the event data.</param>
     public delegate void StateChangeEventHandler(object sender, StateChangeEventArgs e);
 }
 

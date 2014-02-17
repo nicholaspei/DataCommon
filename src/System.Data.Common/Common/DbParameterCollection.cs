@@ -11,6 +11,9 @@ using System.Runtime.CompilerServices;
 
 namespace System.Data.Common
 {
+    /// <summary>
+    /// The base class for a collection of parameters relevant to a <see cref="DbCommand" />.
+    /// </summary>
     public abstract class DbParameterCollection
     {
     }

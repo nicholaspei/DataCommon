@@ -11,9 +11,19 @@ using System.Runtime.CompilerServices;
 
 namespace System.Data
 {
+    /// <summary>
+    /// Describes the current state of the connection to a data source.
+    /// </summary>
     public enum ConnectionState
     {
+        /// <summary>
+        /// The connection is closed.
+        /// </summary>
         Closed,
+
+        /// <summary>
+        /// The connection is open.
+        /// </summary>
         Open
     }
 }

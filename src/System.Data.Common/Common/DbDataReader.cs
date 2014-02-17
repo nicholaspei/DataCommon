@@ -11,6 +11,9 @@ using System.Runtime.CompilerServices;
 
 namespace System.Data.Common
 {
+    /// <summary>
+    /// Reads a forward-only stream of rows from a data source.
+    /// </summary>
     public abstract class DbDataReader
     {
     }
