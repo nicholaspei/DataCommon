@@ -8,10 +8,10 @@ using System.Runtime.CompilerServices;
 [assembly: TypeForwardedTo(typeof(DbConnectionStringBuilder))]
 
 #else
-
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Common.Utilities;
 using System.Globalization;
 using System.Linq;
@@ -26,13 +26,37 @@ namespace System.Data.Common
     {
         private IDictionary<string, object> _currentValues;
         private string _connectionString = string.Empty;
+        private bool _browsableConnectionString = true;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <see cref="ConnectionString"/> property is visible
+        /// in Visual Studio designers.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the connection string is visible within designers; <c>false</c> otherwise.
+        /// The default is <c>true</c>.
+        /// </value>
+        /// <remarks>
+        /// Developers creating designers that take advantage of the <see cref="DbConnectionStringBuilder"/>
+        /// class must be able to make the connection string visible or invisible within the designer's property grid.
+        /// The <see cref="BrowsableConnectionString"/> property lets developers indicate that the property should be
+        /// invisible by setting the property to <c>false</c>.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool BrowsableConnectionString
+        {
+            get { return _browsableConnectionString; }
+            set { _browsableConnectionString = value; }
+        }
 
         private IDictionary<string, object> CurrentValues
         {
             get
             {
                 if (_currentValues == null)
+                {
                     _currentValues = new Dictionary<string, object>();
+                }
 
                 return _currentValues;
             }
@@ -58,7 +82,9 @@ namespace System.Data.Common
                     {
                         object value;
                         if (!ShouldSerialize(keyword) || !TryGetValue(keyword, out value) || value == null)
+                        {
                             continue;
+                        }
 
                         AppendKeyValuePair(
                             builder,
@@ -82,9 +108,13 @@ namespace System.Data.Common
                     for (var option = options.KeyChain; option != null; option = option.Next)
                     {
                         if (option.Value == null)
+                        {
                             Remove(option.Name);
+                        }
                         else
+                        {
                             this[option.Name] = option.Value;
+                        }
                     }
 
                     _connectionString = null;
@@ -201,7 +231,9 @@ namespace System.Data.Common
 
                 object value;
                 if (!CurrentValues.TryGetValue(keyword, out value))
+                {
                     throw new ArgumentException(Strings.KeywordNotSupported(keyword));
+                }
 
                 return value;
             }
@@ -210,9 +242,13 @@ namespace System.Data.Common
                 Check.NotEmpty(keyword, "keyword");
 
                 if (value == null)
+                {
                     Remove(keyword);
+                }
                 else
+                {
                     CurrentValues[keyword] = value;
+                }
 
                 _connectionString = null;
             }
@@ -240,6 +276,38 @@ namespace System.Data.Common
         }
 
         /// <summary>
+        /// Gets a value indicating whether the <see cref="IDictionary"/> object has a fixed size. 
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the IDictionary object has a fixed size; otherwise, <c>false</c>.
+        /// </value>
+        bool IDictionary.IsFixedSize
+        {
+            get { return false; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="IDictionary"/> object is read-only. 
+        /// </summary>
+        /// <value>
+        /// <c>true</c>  if the <see cref="IDictionary"/> object is read-only; otherwise, <c>false</c>.
+        /// </value>
+        bool IDictionary.IsReadOnly
+        {
+            get { return false; }
+        }
+
+        /// <summary>
+        /// Adds an entry with the specified key and value into the <see cref="DbConnectionStringBuilder"/>.
+        /// </summary>
+        /// <param name="keyword">The key to add to the <see cref="DbConnectionStringBuilder"/>.</param>
+        /// <param name="value">The value for the specified key.</param>
+        public void Add(string keyword, object value)
+        {
+            this[keyword] = value;
+        }
+
+        /// <summary>
         /// Provides an efficient and safe way to append a key and value to an existing <see cref="StringBuilder" />
         /// object.
         /// </summary>
@@ -251,7 +319,7 @@ namespace System.Data.Common
             Check.NotNull(builder, "builder");
             Check.NotEmpty(keyword, "keyword");
 
-            DbConnectionOptions.AppendKeyValuePairBuilder(builder, keyword, value);
+            DbConnectionOptions.AppendKeyValuePair(builder, keyword, value);
         }
 
         /// <summary>
@@ -352,7 +420,9 @@ namespace System.Data.Common
             Check.NotEmpty(keyword, "keyword");
 
             if (!CurrentValues.Remove(keyword))
+            {
                 return false;
+            }
 
             _connectionString = null;
 

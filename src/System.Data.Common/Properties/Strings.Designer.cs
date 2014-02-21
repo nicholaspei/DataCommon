@@ -19,6 +19,22 @@ namespace System.Data.Common
         }
 
         /// <summary>
+        /// Format of the initialization string does not conform to specification starting at index {index}.
+        /// </summary>
+        internal static string ConnectionStringInvalidSyntax(object index)
+        {
+            return string.Format(CultureInfo.CurrentCulture, GetString("ConnectionStringInvalidSyntax", "index"), index);
+        }
+
+        /// <summary>
+        /// Internal error.
+        /// </summary>
+        internal static string InternalError
+        {
+            get { return GetString("InternalError"); }
+        }
+
+        /// <summary>
         /// Invalid keyword, contain one or more of 'no characters', 'control characters', 'leading or trailing whitespace' or 'leading semicolons'.
         /// </summary>
         internal static string InvalidKey
