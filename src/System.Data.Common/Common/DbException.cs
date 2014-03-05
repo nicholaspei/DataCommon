@@ -16,23 +16,31 @@ namespace System.Data.Common
     /// </summary>
     public abstract class DbException : Exception
     {
-        private readonly int _errorCode;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="DbException" /> class with the specified error message and
-        /// error code.
+        /// Initializes a new instance of the <see cref="DbException" /> class.
         /// </summary>
-        /// <param name="message">The error message that explains the reason for the exception.</param>
-        /// <param name="errorCode">The error code for the exception.</param>
-        protected DbException(string message, int errorCode)
-            : base(message)
+        protected DbException()
         {
-            _errorCode = errorCode;
         }
 
-        public virtual int ErrorCode
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DbException" /> class with the specified error message.
+        /// </summary>
+        /// <param name="message">The message to display for this exception.</param>
+        protected DbException(string message)
+            : base(message)
         {
-            get { return _errorCode; }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DbException" /> class with the specified error message and a
+        /// reference to the inner exception that is the cause of this exception.
+        /// </summary>
+        /// <param name="message">The message to display for this exception.</param>
+        /// <param name="innerException">The inner exception reference.</param>
+        protected DbException(string message, Exception innerException)
+            : base(message, innerException)
+        {
         }
     }
 }

@@ -24,7 +24,12 @@ namespace System.Data
         /// <summary>
         /// The connection is open.
         /// </summary>
-        Open
+        Open,
+
+        /// <summary>
+        /// The connection object is connecting to the data source.
+        /// </summary>
+        Connecting = 2
     }
 }
 

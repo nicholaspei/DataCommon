@@ -16,6 +16,9 @@ namespace System.Data.Common
     /// </summary>
     public abstract class DbTransaction : IDisposable
     {
+        /// <summary>
+        /// Finalizes an instance of the <see cref="DbTransaction" /> class.
+        /// </summary>
         ~DbTransaction()
         {
             Dispose(false);

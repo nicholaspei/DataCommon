@@ -16,6 +16,25 @@ namespace System.Data
     /// </summary>
     public enum UpdateRowSource
     {
+        /// <summary>
+        /// Any returned parameters or rows are ignored.
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// Output parameters are mapped to the changed row.
+        /// </summary>
+        OutputParameters = 1,
+
+        /// <summary>
+        /// The data in the first returned row is mapped to the changed row.
+        /// </summary>
+        FirstReturnedRecord = 2,
+
+        /// <summary>
+        /// Both the output parameters and the first returned row are mapped to the changed row.
+        /// </summary>
+        Both = 3,
     }
 }
 

@@ -9,6 +9,10 @@ using System.Runtime.CompilerServices;
 
 #else
 
+using System.Data.Utilities;
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace System.Data.Common
 {
     /// <summary>
@@ -16,6 +20,9 @@ namespace System.Data.Common
     /// </summary>
     public abstract class DbConnection : IDisposable
     {
+        /// <summary>
+        /// Finalizes an instance of the <see cref="DbConnection" /> class.
+        /// </summary>
         ~DbConnection()
         {
             Dispose(false);
@@ -34,6 +41,19 @@ namespace System.Data.Common
         /// depend on the specific data source for this connection. The default value is an empty string.
         /// </value>
         public abstract string ConnectionString { get; set; }
+
+        /// <summary>
+        /// Gets the time to wait while establishing a connection before terminating the attempt and generating an
+        /// error.
+        /// </summary>
+        /// <value>
+        /// The time (in seconds) to wait for a connection to open. The default value is determined by the specific
+        /// type of connection that you are using.
+        /// </value>
+        public virtual int ConnectionTimeout
+        {
+            get { return 15; }
+        }
 
         /// <summary>
         /// Gets the name of the database server to which to connect.
@@ -59,19 +79,16 @@ namespace System.Data.Common
         /// you are using.
         /// </value>
         /// <exception cref="InvalidOperationException">
-        /// <see cref="ServerVersion" /> was called while the returned Task was not completed and the connection was not
+        /// <see cref="ServerVersion" /> was called while the returned Task was not completed and the connection was
+        /// not
         /// opened after a call to <see cref="OpenAsync" />.
         /// </exception>
         public abstract string ServerVersion { get; }
 
-        // TODO: Documentation wrong
         /// <summary>
-        /// Gets a string that describes the state of the connection.
+        /// Gets the state of the connection.
         /// </summary>
-        /// <value>
-        /// The state of the connection. The format of the string returned depends on the specific type of connection
-        /// you are using.
-        /// </value>
+        /// <value> The state of the connection. </value>
         public abstract ConnectionState State { get; }
 
         /// <summary>
@@ -121,14 +138,79 @@ namespace System.Data.Common
         /// </summary>
         public abstract void Open();
 
+        /// <summary>
+        /// An asynchronous version of <see cref="Open" />, which opens a database connection with the settings
+        /// specified by the <see cref="ConnectionString" />. This method invokes
+        /// <see cref="OpenAsync(CancellationToken)" /> with <c>CancellationToken.None</c>.
+        /// </summary>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        /// <remarks>
+        /// After calling <see cref="OpenAsync()" />, <see cref="State" /> must return
+        /// <see cref="ConnectionState.Connecting" /> until the returned Task is completed. Then, if the connection was
+        /// successful, <see cref="State" /> must return <see cref="ConnectionState.Open" />. If the connection fails,
+        /// <see cref="State" /> must return <see cref="ConnectionState.Closed" />.
+        /// A call to <see cref="Close" /> will attempt to cancel or close the corresponding <see cref="OpenAsync()" />
+        /// call.
+        /// </remarks>
+        public Task OpenAsync()
+        {
+            return OpenAsync(CancellationToken.None);
+        }
+
+        /// <summary>
+        /// This is the asynchronous version of <see cref="Open" />. Providers should override with an appropriate
+        /// implementation. The cancellation token can optionally be honored.
+        /// The default implementation invokes the synchronous <see cref="Open" /> call and returns a completed task.
+        /// The default implementation will return a cancelled task if passed an already cancelled cancellationToken.
+        /// Exceptions thrown by <see cref="Open" /> will be communicated via the returned Task Exception property.
+        /// Do not invoke other methods and properties of the <c>DbConnection</c> object until the returned Task is
+        /// complete.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        /// <remarks>
+        /// After calling <see cref="OpenAsync(CancellationToken)" />, <see cref="State" /> must return
+        /// <see cref="ConnectionState.Connecting" /> until the returned Task is completed. Then, if the connection was
+        /// successful, <see cref="State" /> must return <see cref="ConnectionState.Open" />. If the connection fails,
+        /// <see cref="State" /> must return <see cref="ConnectionState.Closed" />.
+        /// A call to <see cref="Close" /> will attempt to cancel or close the corresponding
+        /// <see cref="OpenAsync(CancellationToken)" /> call.
+        /// </remarks>
+        public virtual Task OpenAsync(CancellationToken cancellationToken)
+        {
+            return TaskHelper.FromOperation(Open, null, cancellationToken);
+        }
+
+        /// <summary>
+        /// Releases all resources used by the current instance of the <c>DbConnection</c> class.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases the unmanaged and optionally the managed resources used by the current instance of the
+        /// <c>DbConnection</c> class.
+        /// </summary>
+        /// <param name="disposing">
+        /// <c>true</c> to release both managed and unmanaged resources;
+        /// <c>false</c> to release only unmanaged resources.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
+        }
+
+        /// <summary>
+        /// Gets the <see cref="DbProviderFactory" /> for this <see cref="DbConnection" />.
+        /// </summary>
+        /// <value>
+        /// A set of methods for creating instances of a provider's implementation of the data source classes.
+        /// </value>
+        protected internal virtual DbProviderFactory DbProviderFactory
+        {
+            get { return null; }
         }
 
         /// <summary>

@@ -19,7 +19,17 @@ namespace System.Data
         /// <summary>
         /// An SQL text command. (Default.)
         /// </summary>
-        Text = 1
+        Text = 1,
+
+        /// <summary>
+        /// The name of a stored procedure.
+        /// </summary>
+        StoredProcedure = 4,
+
+        /// <summary>
+        /// The name of a table.
+        /// </summary>
+        TableDirect = 512,
     }
 }
 

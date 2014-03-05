@@ -123,6 +123,12 @@
   <data name="ConnectionStringInvalidSyntax" xml:space="preserve">
     <value>Format of the initialization string does not conform to specification starting at index {index}.</value>
   </data>
+  <data name="DefaultConstraintException" xml:space="preserve">
+    <value>Constraint Exception.</value>
+  </data>
+  <data name="DefaultDataException" xml:space="preserve">
+    <value>Data Exception.</value>
+  </data>
   <data name="InternalError" xml:space="preserve">
     <value>Internal error.</value>
   </data>

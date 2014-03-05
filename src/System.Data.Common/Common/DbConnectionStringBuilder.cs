@@ -8,11 +8,12 @@ using System.Runtime.CompilerServices;
 [assembly: TypeForwardedTo(typeof(DbConnectionStringBuilder))]
 
 #else
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Common.Utilities;
+using System.Data.Utilities;
 using System.Globalization;
 using System.Linq;
 using System.Text;

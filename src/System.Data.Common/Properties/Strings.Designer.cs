@@ -27,6 +27,22 @@ namespace System.Data.Common
         }
 
         /// <summary>
+        /// Constraint Exception.
+        /// </summary>
+        internal static string DefaultConstraintException
+        {
+            get { return GetString("DefaultConstraintException"); }
+        }
+
+        /// <summary>
+        /// Data Exception.
+        /// </summary>
+        internal static string DefaultDataException
+        {
+            get { return GetString("DefaultDataException"); }
+        }
+
+        /// <summary>
         /// Internal error.
         /// </summary>
         internal static string InternalError

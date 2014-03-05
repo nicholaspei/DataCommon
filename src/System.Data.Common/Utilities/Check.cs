@@ -1,9 +1,10 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
+using System.Data.Common;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
-namespace System.Data.Common.Utilities
+namespace System.Data.Utilities
 {
     [DebuggerStepThrough]
     internal static class Check
