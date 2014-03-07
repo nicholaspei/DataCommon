@@ -9,6 +9,9 @@ using System.Runtime.CompilerServices;
 
 #else
 
+using System.Globalization;
+using System.Text;
+
 namespace System.Data.Common
 {
     /// <summary>
@@ -16,13 +19,15 @@ namespace System.Data.Common
     /// </summary>
     public abstract class DbException : Exception
     {
-        private readonly int _errorCode;
+        private const int DefaultHResult = unchecked((int)0x80004005);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DbException" /> class.
         /// </summary>
         protected DbException()
+            : base(Strings.ExternalException)
         {
+            HResult = DefaultHResult;
         }
 
         /// <summary>
@@ -32,6 +37,7 @@ namespace System.Data.Common
         protected DbException(string message)
             : base(message)
         {
+            HResult = DefaultHResult;
         }
 
         /// <summary>
@@ -43,18 +49,61 @@ namespace System.Data.Common
         protected DbException(string message, Exception innerException)
             : base(message, innerException)
         {
+            HResult = DefaultHResult;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the ExternalException class with a specified error message and the HRESULT of
+        /// the error.
+        /// </summary>
+        /// <param name="message">The error message that specifies the reason for the exception.</param>
+        /// <param name="errorCode">The HRESULT of the error.</param>
         protected DbException(string message, int errorCode)
             : base(message)
         {
-            _errorCode = errorCode;
+            HResult = errorCode;
         }
 
-        // TODO: Determine if this forwards correctly
-        public int ErrorCode
+        /// <summary>
+        /// Gets the HRESULT of the error.
+        /// </summary>
+        /// <value>The HRESULT of the error.</value>
+        public virtual int ErrorCode
         {
-            get { return _errorCode; }
+            get { return HResult; }
+        }
+
+        /// <summary>
+        /// Returns a string that contains the HRESULT of the error.
+        /// </summary>
+        /// <returns>A string that represents the HRESULT.</returns>
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+            builder.Append(GetType())
+                .Append(" (0x")
+                .Append(HResult.ToString("X8", CultureInfo.InvariantCulture))
+                .Append(")");
+
+            if (!string.IsNullOrEmpty(Message))
+            {
+                builder.Append(": ")
+                    .Append(Message);
+            }
+
+            if (InnerException != null)
+            {
+                builder.Append(" ---> ")
+                    .Append(InnerException);
+            }
+
+            if (StackTrace != null)
+            {
+                builder.Append(Environment.NewLine)
+                    .Append(StackTrace);
+            }
+
+            return builder.ToString();
         }
     }
 }

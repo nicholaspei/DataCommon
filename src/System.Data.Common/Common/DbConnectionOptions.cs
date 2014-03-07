@@ -102,12 +102,12 @@ namespace System.Data.Common
                 case ParserState.DoubleQuoteValue:
                 case ParserState.SingleQuoteValue:
                     // Unbalanced quote
-                    throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(index));
+                    throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(index));
                 case ParserState.KeywordEqual:
                     keyword = GetKeyword(buffer);
                     if (string.IsNullOrEmpty(keyword))
                     {
-                        throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(index));
+                        throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(index));
                     }
 
                     break;
@@ -116,7 +116,7 @@ namespace System.Data.Common
                     var lastChar = value[value.Length - 1];
                     if ('\'' == lastChar || '"' == lastChar)
                     {
-                        throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(index));
+                        throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(index));
                     }
 
                     break;
@@ -169,7 +169,7 @@ namespace System.Data.Common
                         }
                         else if (char.IsControl(currentChar))
                         {
-                            throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(tokenStart));
+                            throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(tokenStart));
                         }
                         tokenStart = currentPosition;
                         if ('=' != currentChar)
@@ -191,7 +191,7 @@ namespace System.Data.Common
                         else if (!char.IsWhiteSpace(currentChar)
                                  && char.IsControl(currentChar))
                         {
-                            throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(tokenStart));
+                            throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(tokenStart));
                         }
 
                         break;
@@ -207,7 +207,7 @@ namespace System.Data.Common
                             keyword = GetKeyword(buffer);
                             if (string.IsNullOrEmpty(keyword))
                             {
-                                throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(tokenStart));
+                                throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(tokenStart));
                             }
                             buffer.Length = 0;
                             parserState = ParserState.KeywordEnd;
@@ -235,7 +235,7 @@ namespace System.Data.Common
                         }
                         else if (char.IsControl(currentChar))
                         {
-                            throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(tokenStart));
+                            throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(tokenStart));
                         }
 
                         parserState = ParserState.UnquotedValue;
@@ -257,7 +257,7 @@ namespace System.Data.Common
                         }
                         else if ('\0' == currentChar)
                         {
-                            throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(tokenStart));
+                            throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(tokenStart));
                         }
 
                         break;
@@ -282,7 +282,7 @@ namespace System.Data.Common
                         }
                         else if ('\0' == currentChar)
                         {
-                            throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(tokenStart));
+                            throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(tokenStart));
                         }
 
                         break;
@@ -306,7 +306,7 @@ namespace System.Data.Common
                             {
                                 if ('\0' != currentChar)
                                 {
-                                    throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(tokenStart));
+                                    throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(tokenStart));
                                 }
                                 parserState = ParserState.NullTermination;
                                 continue;
@@ -320,7 +320,7 @@ namespace System.Data.Common
                         if ('\0' != currentChar
                             && !char.IsWhiteSpace(currentChar))
                         {
-                            throw new ArgumentException(Strings.ConnectionStringInvalidSyntax(tokenStart));
+                            throw new ArgumentException(Strings.FormatConnectionStringInvalidSyntax(tokenStart));
                         }
 
                         continue;
@@ -386,7 +386,7 @@ namespace System.Data.Common
                     || keyword[0] == ';'
                     || char.IsWhiteSpace(keyword[0])
                     || keyword.IndexOf('\0') != -1)
-                    throw new ArgumentException(Strings.KeywordNotSupported(keyword));
+                    throw new ArgumentException(Strings.FormatKeywordNotSupported(keyword));
 
                 if (first == null)
                 {

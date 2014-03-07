@@ -233,7 +233,7 @@ namespace System.Data.Common
                 object value;
                 if (!CurrentValues.TryGetValue(keyword, out value))
                 {
-                    throw new ArgumentException(Strings.KeywordNotSupported(keyword));
+                    throw new ArgumentException(Strings.FormatKeywordNotSupported(keyword));
                 }
 
                 return value;
