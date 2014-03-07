@@ -42,6 +42,12 @@ namespace System.Data.Common
             : base(message, innerException)
         {
         }
+
+        protected DbException(string message, int errorCode)
+            : base(message)
+        {
+            // TODO: Determine if lifted ErrorCode property forwards correctly
+        }
     }
 }
 
