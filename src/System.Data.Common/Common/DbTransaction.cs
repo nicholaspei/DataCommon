@@ -34,6 +34,15 @@ namespace System.Data.Common
         /// Specifies the <see cref="DbConnection" /> object associated with the transaction.
         /// </summary>
         /// <value>The <see cref="DbConnection" /> object associated with the transaction.</value>
+        public DbConnection Connection
+        {
+            get { return DbConnection; }
+        }
+
+        /// <summary>
+        /// Specifies the <see cref="DbConnection" /> object associated with the transaction.
+        /// </summary>
+        /// <value>The <see cref="DbConnection" /> object associated with the transaction.</value>
         protected abstract DbConnection DbConnection { get; }
 
         /// <summary>
