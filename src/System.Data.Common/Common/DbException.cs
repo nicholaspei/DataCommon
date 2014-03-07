@@ -16,6 +16,8 @@ namespace System.Data.Common
     /// </summary>
     public abstract class DbException : Exception
     {
+        private readonly int _errorCode;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DbException" /> class.
         /// </summary>
@@ -46,7 +48,13 @@ namespace System.Data.Common
         protected DbException(string message, int errorCode)
             : base(message)
         {
-            // TODO: Determine if lifted ErrorCode property forwards correctly
+            _errorCode = errorCode;
+        }
+
+        // TODO: Determine if this forwards correctly
+        public int ErrorCode
+        {
+            get { return _errorCode; }
         }
     }
 }
