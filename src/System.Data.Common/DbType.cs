@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 #else
 
-namespace System.Data.Common
+namespace System.Data
 {
     /// <summary>
     /// Specifies the data type of a field, a property, or a <c>Parameter</c> object of a .NET Framework data

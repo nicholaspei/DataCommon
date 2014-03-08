@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 #else
 
-namespace System.Data.Common
+namespace System.Data
 {
     /// <summary>
     /// Specifies the type of a parameter within a query relative to the DataSet.

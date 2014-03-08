@@ -9,9 +9,10 @@ using System.Runtime.CompilerServices;
 
 #else
 
+using System.Data.Common;
 using System.Runtime.InteropServices;
 
-namespace System.Data.Common
+namespace System.Data
 {
     /// <summary>
     /// Represents the exception that is thrown when errors are generated using ADO.NET components.

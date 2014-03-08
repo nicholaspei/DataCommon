@@ -9,7 +9,9 @@ using System.Runtime.CompilerServices;
 
 #else
 
-namespace System.Data.Common
+using System.Data.Common;
+
+namespace System.Data
 {
     /// <summary>
     /// Represents the exception that is thrown when attempting an action that violates a constraint.

@@ -9,8 +9,6 @@ using System.Runtime.CompilerServices;
 
 #else
 
-using System.Data.Common;
-
 namespace System.Data
 {
     /// <summary>
