@@ -178,15 +178,6 @@ namespace System.Data.Common
         public abstract int GetOrdinal(string name);
 
         /// <summary>
-        /// Returns a <see cref="DataTable" /> that describes the column metadata of the <c>DbDataReader</c>.
-        /// </summary>
-        /// <returns> A <see cref="DataTable" /> that describes the column metadata.</returns>
-        public virtual DataTable GetSchemaTable()
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <summary>
         /// Gets the value of the specified column as a Boolean.
         /// </summary>
         /// <param name="ordinal">The zero-based column ordinal.</param>

@@ -144,19 +144,6 @@ namespace System.Data.Common
         public abstract bool SourceColumnNullMapping { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="DataRowVersion" /> to use when you load <see cref="Value" />.
-        /// </summary>
-        /// <value>
-        /// One of the <see cref="DataRowVersion" /> values. The default is <see cref="DataRowVersion.Current" />.
-        /// </value>
-        [DefaultValue(DataRowVersion.Current)]
-        public virtual DataRowVersion SourceVersion
-        {
-            get { return DataRowVersion.Default; }
-            set { }
-        }
-
-        /// <summary>
         /// Gets or sets the value of the parameter.
         /// </summary>
         /// <value>
