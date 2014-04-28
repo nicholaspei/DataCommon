@@ -1,8 +1,7 @@
 {
   "version": "0.1-alpha-*",
-  "dependencies": {},
   "configurations": {
-    "net45": {
+    "net451": {
       "dependencies": {
         "System.Data": ""
       }
