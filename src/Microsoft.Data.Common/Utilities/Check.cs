@@ -15,9 +15,9 @@
 // See the Apache 2 License for the specific language governing
 // permissions and limitations under the License.
 
-using System.Data.Common;
 using System.Diagnostics;
 using JetBrains.Annotations;
+using Microsoft.Data.Common;
 
 namespace System.Data.Utilities
 {

@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k10", "k10", "{92D92C23-08E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net451", "net451", "{A0DCB366-1404-41B5-96C5-BA8604B4BA54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Data.Common.k10", "src\System.Data.Common\System.Data.Common.k10.csproj", "{83592759-C957-4E07-8926-7A4426D39E3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Data.Common.k10", "src\Microsoft.Data.Common\Microsoft.Data.Common.k10.csproj", "{83592759-C957-4E07-8926-7A4426D39E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Data.Common.net451", "src\System.Data.Common\System.Data.Common.net451.csproj", "{5EF04D39-E204-474F-9112-70984F71DEDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Data.Common.net451", "src\Microsoft.Data.Common\Microsoft.Data.Common.net451.csproj", "{5EF04D39-E204-474F-9112-70984F71DEDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

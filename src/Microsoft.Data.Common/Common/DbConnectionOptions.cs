@@ -18,6 +18,7 @@
 using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
+using Microsoft.Data.Common;
 
 namespace System.Data.Common
 {

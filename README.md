@@ -1,2 +1,2 @@
-System.Data.Common
-==================
+Microsoft.Data.Common
+=====================

@@ -32,6 +32,7 @@ using System.Data.Utilities;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Microsoft.Data.Common;
 
 namespace System.Data.Common
 {

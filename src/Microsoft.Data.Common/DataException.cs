@@ -24,8 +24,8 @@ using System.Runtime.CompilerServices;
 
 #else
 
-using System.Data.Common;
 using System.Runtime.InteropServices;
+using Microsoft.Data.Common;
 
 namespace System.Data
 {
