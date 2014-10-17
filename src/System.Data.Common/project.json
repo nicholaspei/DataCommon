@@ -6,6 +6,11 @@
         "System.Data": ""
       }
     },
+    "aspnet50": {
+      "frameworkAssemblies": {
+        "System.Data": ""
+      }
+    },
     "aspnetcore50": {
       "dependencies": {
         "System.Collections": "4.0.10-beta-*",
